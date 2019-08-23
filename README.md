@@ -273,3 +273,33 @@ and add in module:
 ```ts
 providers: [MyService]
 ```
+
+# Animations
+Animations - moving from style state to another style state. Before add BrowserModule and BrowserAnimationsModule to module
+
+Implementation:
+```ts
+  animations: [
+      trigger('openClose', [
+        state('open', style({
+          height: '400px',
+          opacity: 1.5,
+        })),
+        state('closed', style({
+          height: '100px',
+          opacity: 0.5,
+        })),
+        transition('open => closed', [
+          animate('1s')
+        ]),
+        transition('closed => open', [
+          animate('1s')
+        ])
+      ])
+    ]
+```
+
+usage
+```html
+<div [@openClose]="isShowed ? 'open' : 'closed'">
+```
