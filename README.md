@@ -108,7 +108,7 @@ export class AppComponent {
 | ngAfterContentInit  | Called once after the first ngDoCheck().  |
 | ngAfterViewInit  | Called once after the first ngAfterContentChecked().   |
 
-**Template syntax**
+## Template syntax
 
 | Syntax  | Description |
 | ------------- | ------------- |
@@ -120,6 +120,23 @@ export class AppComponent {
 | <div [ngClass]="{green: isTrue(), bold: itTrue()}"/> | Angular ngClass attribute  |
 | <div [ngStyle]="{'color': isTrue() ? '#bbb' : '#ccc'}"/>	| Angular ngStyle attribute  |
 
+## Input/Output
+
+**Input()**
+To pass value into child component
+
+Sample child component implementation
+```ts
+export class SampleComponent {
+	@Input() value: any/string/object/…;
+	...
+}
+```
+
+Sample parent component usage
+```html
+<app-sample-component [value]="myValue"></app-sampe-component>
+```
 
 ## Content projection
 Content projection is injection inner html into child component
