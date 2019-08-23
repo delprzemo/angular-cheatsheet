@@ -248,4 +248,28 @@ export class AppModule { }
 ```
 
 # Services
+Components shouldn't fetch or save data directly and they certainly shouldn't knowingly present fake data. They should focus on presenting data and delegate data access to a service.
 
+**Sample service with one function**
+```ts
+@Injectable()
+export class MyService {
+	public items: Item[];
+	constructor() { }
+	
+	getSth() {
+		// some implementation
+	}
+}
+```
+**Usage**
+It should be injected before usage
+```ts 
+constructor(private dogListService: MyService) 
+```
+
+and add in module:
+
+```ts
+providers: [MyService]
+```
