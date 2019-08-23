@@ -369,10 +369,10 @@ constructor(private formBuilder: FormBuilder) { }
 
 ngOnInit() {
 	this.registerForm = this.formBuilder.group({
-	firstName: [{{here default value}}, Validators.required],
-	lastName: ['', Validators.required],
-	email: ['', [Validators.required, Validators.email]],
-	password: ['', [Validators.required, Validators.minLength(6)]]
+		firstName: [{{here default value}}, Validators.required],
+		lastName: ['', Validators.required],
+		email: ['', [Validators.required, Validators.email]],
+		password: ['', [Validators.required, Validators.minLength(6)]]
 	});
 }
 
@@ -389,4 +389,57 @@ get f() { return this.registerForm.controls; }
 
 	alert('SUCCESS!! :-)')
 }
+```
+
+## Custom Validator for Reactive forms
+
+**Function**
+```ts
+validateUrl(control: AbstractControl) {
+    if (!control.value || control.value.includes('.png') || control.value.includes('.jpg')) {
+      return null;
+    }
+    return { validUrl: true };
+  }
+```
+
+**Usage**
+```ts
+this.secondFormGroup = this._formBuilder.group({
+      imageCtrl: ['', [Validators.required, this.validateUrl]]
+});
+```
+
+**Multi-field validation**
+```ts
+validateNameShire(group: FormGroup) {
+    if (group) {
+      if (group.get('isShireCtrl').value && !group.get('nameCtrl').value.toString().toLowerCase().includes('shire')) {
+	return { nameShire : true };
+      }
+    }
+    return null;
+ }
+```
+
+**Multi-field validation usage***
+```ts
+this.firstFormGroup.setValidators(this.validateNameShire);
+```
+
+**Error handling**
+```html
+<div *ngIf="firstFormGroup.controls.nameCtrl.errors.maxlength">Name is too long</div>				
+<div *ngIf="firstFormGroup.errors.nameShire">Shire dogs should have "shire" in name</div>
+```
+
+## Custom Validator Directive for Template driven forms
+To register our custom validation directive to NG_VALIDATORS service we have to do it like this:
+(thanks to multi parameter we won't override NG_VALIDATORS but just add CustomValidator to NG_VALIDATORS)
+
+```ts
+@Directive({
+	selector: '[CustomValidator]',
+	providers: [{provide: NG_VALIDATORS, useExisting: CustomValidator, multi:true}]						
+})
 ```
