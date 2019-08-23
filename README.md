@@ -805,6 +805,7 @@ we can add schemas: [NO_ERRORS_SCHEMA]. This means that we don’t have to mock 
 # Others
 
 ## Http interceptor
+Intercepts and handles an HttpRequest or HttpResponse.
 
 Class:
 ```ts
