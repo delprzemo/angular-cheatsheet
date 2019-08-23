@@ -97,7 +97,7 @@ export class AppComponent {
 
 ## Component life cycles
 
-| Life cyccle  | Description |
+| Life cycle  | Description |
 | ------------- | ------------- |
 | ngOnInit  | Called once, after the first ngOnChanges()   |
 | ngOnChanges  | Called before ngOnInit() and whenever one of input properties change.   |
@@ -596,4 +596,110 @@ To register our custom validation directive to NG_VALIDATORS service we have to 
 	selector: '[CustomValidator]',
 	providers: [{provide: NG_VALIDATORS, useExisting: CustomValidator, multi:true}]						
 })
+```
+
+Example:
+```ts
+@Directive({
+	selector: '[customValidation]',
+	providers: [{provide: NG_VALIDATORS, useExisting: 	EmailValidationDirective, multi: true}]
+})
+export class CustomValidation implements Validator {
+	constructor() { }
+	validate(control: AbstractControl): ValidationErrors {
+	return (control.value && control.value.length <= 300) ? 
+		{myValue : true } : null;
+	}
+}
+```
+
+For multiple fields:
+```ts
+validate(formGroup: FormGroup): ValidationErrors {
+	const passwordControl = formGroup.controls["password"];
+	const emailControl = formGroup.controls["login"];
+	if (!passwordControl || !emailControl || !passwordControl.value || !emailControl.value) {
+		return null;
+	}
+
+	if (passwordControl.value.length > emailControl.value.length) {
+		passwordControl.setErrors({ tooLong: true });
+	} else {
+		passwordControl.setErrors(null);
+	}
+	return formGroup;
+}
+
+```
+
+## ngModel in custom component
+
+1. Add to module:
+```ts
+providers: [
+	{
+		provide: NG_VALUE_ACCESSOR,
+		useExisting: forwardRef(() => TextAreaComponent),
+		multi: true
+	}
+]
+```
+
+2. Implement ControlValueAccessor interface
+```ts
+interface ControlValueAccessor {
+	writeValue(obj: any): void
+	registerOnChange(fn: any): void
+	registerOnTouched(fn: any): void
+	setDisabledState(isDisabled: boolean)?: void
+}
+```
+
+
+| Function  | Description |
+| ------------- | ------------- |
+| registerOnChange  | Register a function to tell Angular when the value of the input changes |
+| registerOnTouched  | Register a function to tell Angular when the value was touched |
+| writeValue  | tell Angular how to Write a value to the input |
+
+Sample implementation:
+```ts
+
+@Component({
+  selector: 'app-text-area',
+  templateUrl: './text-area.component.html',
+  styleUrls: ['./text-area.component.less'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TextAreaComponent),
+      multi: true
+    }
+  ]
+})
+export class TextAreaComponent implements ControlValueAccessor, OnInit {
+  @Input() value: string;
+
+  private _onChange = (data: any) => { console.log('changed: ' + data); };
+  private _onTouched = (data?: any) => {console.log('touched: ' + data); };
+
+  ngOnInit(): void {
+    const self = this;
+  }
+
+  constructor() {}
+
+  writeValue(obj: any): void {
+    this.value = obj;
+  }
+
+  registerOnChange(fn) {
+    this._onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this._onTouched = fn;
+  }
+}
+
 ```
