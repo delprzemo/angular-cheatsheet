@@ -138,6 +138,25 @@ Sample parent component usage
 <app-sample-component [value]="myValue"></app-sampe-component>
 ```
 
+**Output()**
+Emiting event to parent component
+
+Sample child component
+```ts
+@Output() myEvent: EventEmitter<MyModel> = new EventEmitter();
+onRemoved(item: MyModel) {
+	this.myEvent.emit(item);
+}
+```
+
+Sample parent component
+```html
+<app-my-component 
+(myEvent)="someFunction()"></app-my-component>
+```
+
+onRemoved in child component is calling someFunction in parent component
+
 ## Content projection
 Content projection is injection inner html into child component
 
