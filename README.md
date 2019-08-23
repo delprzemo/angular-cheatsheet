@@ -839,3 +839,75 @@ Refer to host element/component
 
 
 # Interview questions
+
+**When would you use the useFactory provider method?**
+With useFactory we can use a factory at runtime to decide which kind of service we want to return if it got requested by any other class in our application or you need to parameterize the construction of a service
+
+```ts
+export function sampleFactory() {
+  return new Service1();
+}
+
+export class Service1 {}
+
+@Injectable({
+  providedIn: 'root',
+  useFactory: xyzFactory
+})
+export class Service2 {}
+```
+
+Service1 will be injected into another class
+
+**What is router-outlet**
+Use the <router-outlet> component when your main will appear in your application
+	
+**How to declare global value?**
+Use InjectionToken
+
+**Which decorator lets you inject a service registered with an Injection Token?**
+@Inject
+
+for example
+```ts
+ @Inject(CONTROLS_GLOBAL_CONFIG) globalVlues: ControlsConfig
+```
+
+**How to mimick environment for components/services in tests?**
+Use TestBed
+
+**What is Resolve interface?**
+Interface that classes can implement to be a data provider.
+
+example:
+
+```ts
+@Injectable()
+class UserResolver implements Resolve<User> {
+  constructor(private service: MySampleService) {}
+
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> {
+    return this.service.fetchData(route.params.id);
+  }
+}
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot([
+      {
+        path: 'user/:id',
+        component: UserComponent,
+        resolve: {
+          userData: UserResolver
+        }
+      }
+    ])
+  ],
+  providers: [UserResolver]
+})
+```
+
+We can use it to pre-load data for a component before the component is displayed
