@@ -740,7 +740,7 @@ export class TextAreaComponent implements ControlValueAccessor, OnInit {
 
 **Service**
 ```ts
-describe(MyService', function() {
+describe('MyService', () => {
 	let service: MyService;
 	beforeEach(() => service = new MyService();
 	it('#fetch should update data', () => {
