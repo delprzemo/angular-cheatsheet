@@ -155,8 +155,56 @@ routerLinkActive="active" will add active class to element when the link's route
 ```ts
 //Navigate from code
 this.router.navigate(['/heroes']);
+
 // with parameters													
-this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);					
+this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);
+
 // Receive parameters without Observable
 let id = this.route.snapshot.paramMap.get('id');										
  ```
+ 
+ **CanActivate/CanDeactivate**
+Interface that a class can implement to be a guard deciding if a route can be activated. If all guards return true, navigation will continue. 
+
+```ts
+
+class AlwaysAuthGuard implements CanActivate {	
+	canActivate() {
+		return true;
+	}
+}
+```
+and assing it in routing module:
+
+```ts
+ {
+    path: 'artist/:artistId',
+    component: ArtistComponent,
+    canActivate: [AlwaysAuthGuard], 
+    children: [
+      {path: '', redirectTo: 'tracks'},
+      {path: 'tracks', component: ArtistTrackListComponent},
+      {path: 'albums', component: ArtistAlbumListComponent},
+    ]
+  }
+```
+
+# Modules
+Angular apps are modular and Angular has its own modularity system called NgModules. NgModules are containers for a cohesive block of code dedicated to an application domain, a workflow, or a closely related set of capabilities. 
+
+**Sample module with comments**
+
+```ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+@NgModule({
+	declarations: [AppComponent], // components, pipes, directives
+	imports: [BrowserModule, AppRoutingModule], // other modules
+	providers: [], // services
+	bootstrap: [AppComponent] // top component
+})
+export class AppModule { }
+```
