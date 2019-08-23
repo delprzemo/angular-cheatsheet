@@ -740,7 +740,7 @@ export class TextAreaComponent implements ControlValueAccessor, OnInit {
 
 **Service**
 ```ts
-describe(MyService', () => {
+describe(MyService', function() {
 	let service: MyService;
 	beforeEach(() => service = new MyService();
 	it('#fetch should update data', () => {
@@ -836,6 +836,5 @@ Refer to host element/component
 | :host-context(selector) { ... }  | to match elements, classes on parent components and add styling to it  |
 | :host ::ng-deep   | styling will be applied also to all child components |
 
-# Perfomance tips
 
 # Interview questions
