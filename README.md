@@ -736,6 +736,72 @@ export class TextAreaComponent implements ControlValueAccessor, OnInit {
 
 # Tests
 
+## Unit tests
+
+**Service**
+```ts
+describe(MyService', () => {
+	let service: MyService;
+	beforeEach(() => service = new MyService();
+	it('#fetch should update data', () => {
+		service.fetchData();
+		expect(service.data.length).toBe(4);
+		expect(service.data[0].id).toBe(1);
+	});
+});
+```
+
+For async functions
+
+```ts
+it('#fetch should update data', (done: DoneFn) => {    
+	// some code
+	done();  // we need 'done' to avoid test finishing before date was received
+	// some code
+});
+```
+
+example async test: 
+```ts
+it('http client works', (done: DoneFn) => {
+    service.getUser().subscribe((data) => {
+      expect(data).toBe('test');
+      done();
+    });
+ });
+```
+
+**Spy and stub**
+
+Spy:
+```ts
+// create spied object by copy getDataAsync from HttpService
+const valueServiceSpy =
+jasmine.createSpyObj('HttpService', ['getDataAsync']);
+```
+Stub:
+```ts
+const stubValue = of('StubValue');
+valueServiceSpy.getDataAsync.and.returnValue(stubValue);
+```
+
+**TestBed**
+Mock whole module/environment for unit tests
+
+```ts
+beforeEach(() => {
+	let httpClientMock = TestBed.configureTestingModule({ providers: [{ provide: MyService, useValue: new MyService(httpClientMock)}] });
+});
+```
+
+Then use tested object (for example service) like this:
+
+```ts
+service = TestBed.get(MyService);
+```
+we can add schemas: [NO_ERRORS_SCHEMA]. This means that we don’t have to mock children component dependencies of this component as Angular won’t yell at us anymore for our lack of doing so.
+
+
 # Others
 
 ## Http interceptor
