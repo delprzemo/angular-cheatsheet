@@ -69,12 +69,28 @@ Command line inferface for Angular - set of commands that will help us during de
 **Sample component .ts**
 ```ts
 import { Component } from '@angular/core';
+
 @Component({
-selector: 'app-root',
-templateUrl: './app.component.html',
-styleUrls: ['./app.component.less']
+	// component attributes
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.less']
 })
+
 export class AppComponent {
 	title = 'my-dogs-training';
 }
 ```
+** Component attributes**
+
+# Component attributes
+
+| Attribute  | Description |
+| ------------- | ------------- |
+| changeDetection	  | The change-detection strategy to use for this component.  |
+| viewProviders  | 	Defines the set of injectable objects that are visible to its view DOM children  |
+| moduleId  | The module ID of the module that contains the component  |
+| encapsulation  | 	An encapsulation policy for the template and CSS styles  |
+| interpolation  | 	Overrides the default encapsulation start and end delimiters ({{ and }}  |
+| entryComponents  | 	A set of components that should be compiled along with this component.  |
+| preserveWhitespaces  | 	True to preserve or false to remove potentially superfluous whitespace characters from the compiled template.   |
