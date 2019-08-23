@@ -371,6 +371,36 @@ public send(val1: any, val2: any): Observable<any> {
 
 ```
 
+## Dependency Injection
+
+Inject class into another class
+```ts
+@Injectable({
+	providedIn: 'root',
+})
+export class SomeService {}
+```
+It accepts 'root' as a value or any module of your application
+
+## Declare global values/classes
+
+class:
+```ts
+import {InjectionToken} from '@angular/core';
+export const CONTROLS_GLOBAL_CONFIG = new InjectionToken<ControlsConfig>('global-values');
+export interface ControlsConfig {firstGlobalValue: string;}
+```
+
+module:
+```ts
+providers: [{provide: CONTROLS_GLOBAL_CONFIG, useValue: {firstGlobalValue : 'Some value' }},
+```
+
+usage (for example in component)
+```ts
+constructor(@Optional() @Inject(CONTROLS_GLOBAL_CONFIG) globalVlues: ControlsConfig) {
+```
+
 # Pipes
 Transform data/value to specific format, for example:
 
@@ -703,3 +733,5 @@ export class TextAreaComponent implements ControlValueAccessor, OnInit {
 }
 
 ```
+
+
