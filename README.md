@@ -63,3 +63,18 @@ Command line inferface for Angular - set of commands that will help us during de
 | ------------- | ------------- |
 | ng add @angular/material 	  | add angular material to project  |
 | ng g @angular/material:material-nav --name nav  | create material navigation component  |
+
+# Components
+
+**Sample component .ts**
+```ts
+import { Component } from '@angular/core';
+@Component({
+selector: 'app-root',
+templateUrl: './app.component.html',
+styleUrls: ['./app.component.less']
+})
+export class AppComponent {
+	title = 'my-dogs-training';
+}
+```
