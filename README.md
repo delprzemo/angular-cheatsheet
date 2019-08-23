@@ -67,7 +67,7 @@ Command line inferface for Angular - set of commands that will help us during de
 # Components & Templates
 Components are the most basic UI building block of an Angular app. An Angular app contains a tree of Angular components.
 
-**Sample component ts file**
+## Sample component ts file
 ```ts
 import { Component } from '@angular/core';
 
@@ -95,7 +95,7 @@ export class AppComponent {
 | entryComponents  | 	A set of components that should be compiled along with this component.  |
 | preserveWhitespaces  | 	True to preserve or false to remove potentially superfluous whitespace characters from the compiled template.   |
 
-**Component life cycles**
+## Component life cycles
 
 | Life cyccle  | Description |
 | ------------- | ------------- |
@@ -119,6 +119,44 @@ export class AppComponent {
 | *ngFor="let item of items"	| Iterate through items list |
 | <div [ngClass]="{green: isTrue(), bold: itTrue()}"/> | Angular ngClass attribute  |
 | <div [ngStyle]="{'color': isTrue() ? '#bbb' : '#ccc'}"/>	| Angular ngStyle attribute  |
+
+
+## Content projection
+Content projection is injection inner html into child component
+
+Example:
+
+**Parent component template**
+```html
+<component>
+	<div>
+		(some html here)
+	</div>
+</component>
+```
+
+**Child component template**
+```html 
+<ng-content></ng-content>
+```
+(some html here) will be injection into <ng-content></ng-content>
+
+**Two differents htmls**
+```html
+<component>
+	<div well-title>
+		(some html here)
+	</div>
+	<div well-body>
+		(some html here)
+	</div>
+</component>
+```
+
+```html
+<ng-content select="title"></ng-content> 
+<ng-content select="body"></ng-content>
+```
 
 # Routing
 The Angular Router enables navigation from one view to the next as users perform application tasks.
@@ -163,7 +201,7 @@ this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);
 let id = this.route.snapshot.paramMap.get('id');										
  ```
  
- **CanActivate/CanDeactivate**
+## CanActivate/CanDeactivate
 Interface that a class can implement to be a guard deciding if a route can be activated. If all guards return true, navigation will continue. 
 
 ```ts
@@ -192,7 +230,7 @@ and assing it in routing module:
 # Modules
 Angular apps are modular and Angular has its own modularity system called NgModules. NgModules are containers for a cohesive block of code dedicated to an application domain, a workflow, or a closely related set of capabilities. 
 
-**Sample module with comments**
+## Sample module with comments
 
 ```ts
 import { BrowserModule } from '@angular/platform-browser';
@@ -208,3 +246,6 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 ```
+
+# Services
+
