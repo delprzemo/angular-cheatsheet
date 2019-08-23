@@ -274,6 +274,63 @@ and add in module:
 providers: [MyService]
 ```
 
+# Pipes
+Transform data/value to specific format, for example:
+
+Show date in shortDate format:
+```html
+{{model.birthsDay | date:'shortDate'}}
+```
+
+**Pipe implementation**
+```ts
+@Pipe({name: 'uselessPipe'})
+export class uselessPipe implements PipeTransform {
+  transform(value: string, before: string, after: string): string {
+    let newStr = `${before} ${value} ${after}`;
+    return newStr;
+  }
+}
+```
+
+**usage**
+```html
+{{ user.name | uselessPipe:"Mr.":"the great" }}
+```
+
+# Directives
+An Attribute directive changes the appearance or behavior of a DOM element. For example [ngStyle] is a directive
+
+**Custom directive**
+```ts
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+
+  constructor(private el: ElementRef) { }
+
+  @Input('appHighlight') highlightColor: string;
+  @Input('otherPar') otherPar: any;     //it will be taken from other attribute named [otherPar]
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight(this.highlightColor || 'red');
+  }
+
+  private highlight(color: string) {
+    this.el.nativeElement.style.backgroundColor = color;
+  }
+}
+```
+
+***Usage***
+```html
+<p [appHighlight]="color" [otherPar]="someValue">Highlight me!</p>
+```
+
+
 # Animations
 Animations - moving from style state to another style state. Before add BrowserModule and BrowserAnimationsModule to module
 
