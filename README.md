@@ -67,7 +67,7 @@ Command line inferface for Angular - set of commands that will help us during de
 # Components & Templates
 Components are the most basic UI building block of an Angular app. An Angular app contains a tree of Angular components.
 
-**Sample component .ts**
+**Sample component ts file**
 ```ts
 import { Component } from '@angular/core';
 
@@ -84,7 +84,6 @@ export class AppComponent {
 ```
 ** Component attributes**
 
-# Component attributes
 
 | Attribute  | Description |
 | ------------- | ------------- |
@@ -96,7 +95,20 @@ export class AppComponent {
 | entryComponents  | 	A set of components that should be compiled along with this component.  |
 | preserveWhitespaces  | 	True to preserve or false to remove potentially superfluous whitespace characters from the compiled template.   |
 
-# Template syntax
+**Component life cycles**
+
+| Life cyccle  | Description |
+| ------------- | ------------- |
+| ngOnInit  | Called once, after the first ngOnChanges()   |
+| ngOnChanges  | Called before ngOnInit() and whenever one of input properties change.   |
+| ngOnDestroy  | Called just before Angular destroys the directive/component  |
+| ngDoCheck  | Called during every change detection run  |
+| ngAfterContentChecked  | Called after the ngAfterContentInit() and every subsequent ngDoCheck()  |
+| ngAfterViewChecked  | Called after the ngAfterViewInit() and every subsequent ngAfterContentChecked().  |
+| ngAfterContentInit  | Called once after the first ngDoCheck().  |
+| ngAfterViewInit  | Called once after the first ngAfterContentChecked().   |
+
+**Template syntax**
 
 | Syntax  | Description |
 | ------------- | ------------- |
@@ -107,3 +119,44 @@ export class AppComponent {
 | *ngFor="let item of items"	| Iterate through items list |
 | <div [ngClass]="{green: isTrue(), bold: itTrue()}"/> | Angular ngClass attribute  |
 | <div [ngStyle]="{'color': isTrue() ? '#bbb' : '#ccc'}"/>	| Angular ngStyle attribute  |
+
+# Routing
+The Angular Router enables navigation from one view to the next as users perform application tasks.
+
+**Sample routing ts file**
+```ts
+const appRoutes: Routes = [
+  { path: 'crisis-center', component: CrisisListComponent },
+  { path: 'hero/:id',      component: HeroDetailComponent },
+  {
+    path: 'heroes',
+    component: HeroListComponent,
+    data: { title: 'Heroes List' }
+  },
+  { path: '',
+    redirectTo: '/heroes',
+    pathMatch: 'full'
+  },
+  { path: '**', component: PageNotFoundComponent }
+];
+```
+
+Then this should be added inside Angular.module imports
+```ts
+RouterModule.forRoot(appRoutes)
+```
+
+**Usage**
+```html
+  <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a>	
+```
+routerLinkActive="active" will add active class to element when the link's route becomes active
+
+```ts
+//Navigate from code
+this.router.navigate(['/heroes']);
+// with parameters													
+this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);					
+// Receive parameters without Observable
+let id = this.route.snapshot.paramMap.get('id');										
+ ```
