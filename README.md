@@ -195,7 +195,7 @@ Example:
 ```
 
 ## @ViewChild decorator
-In order to have access to child component/directive
+In order to have access to child component/directive/element
 
 ```ts
 @ViewChild(NumberComponent)
@@ -207,6 +207,24 @@ In order to have access to child component/directive
        this.numberComponent.decreaseByOne();  //method from child component
     }
 ```
+
+**Sample for element:**
+html:
+```html
+<div #myElement></div>
+```
+
+component:
+```ts
+@ViewChild('myElement') myElement: ElementRef
+```
+Instead of ElementRef can be used specific element like FormControl for forms.
+
+Reference to element in html:
+```html
+<button (click)="doSth(myElement)"></button>
+```
+
 
 # Routing
 The Angular Router enables navigation from one view to the next as users perform application tasks.
@@ -322,6 +340,35 @@ and add in module:
 
 ```ts
 providers: [MyService]
+```
+
+## HttpClient
+To handle and consume http requests
+
+1. Add import to module
+```ts
+import { HttpClientModule} from "@angular/common/http";
+```
+
+2. Usage
+```ts
+import {HttpClient} from '@angular/common/http';
+
+...
+
+// GET
+public getData(): Observable<MyResponseModel> {
+	return this.http.get<MyResponseModel>('api/users/2');
+}
+
+// POST
+public send(val1: any, val2: any): Observable<any> {
+	const object = new SendModel(val1, val2);
+	const options = {headers: new HttpHeaders({'Content-type': 'application/json'})};
+	return this.http.post<string>(environment.apiUrl + 'api/login', object, options);
+}
+
+
 ```
 
 # Pipes
