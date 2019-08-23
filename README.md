@@ -734,4 +734,42 @@ export class TextAreaComponent implements ControlValueAccessor, OnInit {
 
 ```
 
+# Tests
 
+# Others
+
+## Http interceptor
+
+Class:
+```ts
+@Injectable()
+export class MyInterceptor implements HttpInterceptor {
+
+	constructor() { }
+
+	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+		// do sth (like check and throw error)
+		return next.handle(request); //if want continue
+	}
+}
+
+```
+
+Module:
+```ts
+{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+```
+
+## :host
+Refer to host element/component
+
+
+| Value  | Description |
+| ------------- | ------------- |
+| :host(selector) { ... }  | to match attributes, classes on the host element and add styling to it |
+| :host-context(selector) { ... }  | to match elements, classes on parent components and add styling to it  |
+| :host ::ng-deep   | styling will be applied also to all child components |
+
+# Perfomance tips
+
+# Interview questions
