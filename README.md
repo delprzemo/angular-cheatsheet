@@ -64,7 +64,8 @@ Command line inferface for Angular - set of commands that will help us during de
 | ng add @angular/material 	  | add angular material to project  |
 | ng g @angular/material:material-nav --name nav  | create material navigation component  |
 
-# Components
+# Components & Templates
+Components are the most basic UI building block of an Angular app. An Angular app contains a tree of Angular components.
 
 **Sample component .ts**
 ```ts
@@ -94,3 +95,15 @@ export class AppComponent {
 | interpolation  | 	Overrides the default encapsulation start and end delimiters ({{ and }}  |
 | entryComponents  | 	A set of components that should be compiled along with this component.  |
 | preserveWhitespaces  | 	True to preserve or false to remove potentially superfluous whitespace characters from the compiled template.   |
+
+# Template syntax
+
+| Syntax  | Description |
+| ------------- | ------------- |
+| {{user.name}}	| Interpolation - just generate user name here  |
+| <img [src] = "user.imageUrl">	| property binding - bind image url for user to src attribute  |
+| <button (click)="do()" ... />	| Event - assign function to click event  |
+| <button *ngIf="user.showSth" ... />	| Show button when user.showSth is true  |
+| *ngFor="let item of items"	| Iterate through items list |
+| <div [ngClass]="{green: isTrue(), bold: itTrue()}"/> | Angular ngClass attribute  |
+| <div [ngStyle]="{'color': isTrue() ? '#bbb' : '#ccc'}"/>	| Angular ngStyle attribute  |
