@@ -158,6 +158,20 @@ Example:
 <ng-content select="body"></ng-content>
 ```
 
+## @ViewChild decorator
+In order to have access to child component/directive
+
+```ts
+@ViewChild(NumberComponent)
+    private numberComponent: NumberComponent;
+    increase() {
+       this.numberComponent.increaseByOne(); //method from child component
+    }
+    decrease() {
+       this.numberComponent.decreaseByOne();  //method from child component
+    }
+```
+
 # Routing
 The Angular Router enables navigation from one view to the next as users perform application tasks.
 
