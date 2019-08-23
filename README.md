@@ -277,7 +277,7 @@ providers: [MyService]
 # Animations
 Animations - moving from style state to another style state. Before add BrowserModule and BrowserAnimationsModule to module
 
-Implementation:
+**Implementation:**
 ```ts
   animations: [
       trigger('openClose', [
@@ -299,7 +299,94 @@ Implementation:
     ]
 ```
 
-usage
+**usage**
 ```html
 <div [@openClose]="isShowed ? 'open' : 'closed'">
+```
+
+# Angular Forms
+
+## Template driven forms
+Form logic (validation, properties) are kept in template
+
+**sample html**
+```html
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required />
+                        <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                            <div *ngIf="firstName.errors.required">First Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+```
+
+**sample component**
+```ts
+@ViewChild("f") form: any;
+firstName: string = "";
+langs: string[] = ["English", "French", "German"];
+
+onSubmit() {
+	if (this.form.valid) {
+		console.log("Form Submitted!");
+		this.form.reset();
+	}
+}
+```
+
+## Reactive forms
+Form logic (validation, properties) are kept in component
+
+**sample html**
+```html
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+	<div class="form-group">
+		<label>Email</label>
+		<input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+		<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+ 		</div>
+	</div>
+
+	<div class="form-group">
+		<button [disabled]="loading" class="btn btn-primary">Register</button>
+	</div>
+ </form>
+```
+
+**sample component**
+```ts
+registerForm: FormGroup;
+submitted = false;
+
+constructor(private formBuilder: FormBuilder) { }
+
+ngOnInit() {
+	this.registerForm = this.formBuilder.group({
+	firstName: [{{here default value}}, Validators.required],
+	lastName: ['', Validators.required],
+	email: ['', [Validators.required, Validators.email]],
+	password: ['', [Validators.required, Validators.minLength(6)]]
+	});
+}
+
+// convenience getter for easy access to form fields
+get f() { return this.registerForm.controls; }
+
+ onSubmit() {
+	 this.submitted = true;
+
+	// stop here if form is invalid
+	if (this.registerForm.invalid) {
+		return;
+	}
+
+	alert('SUCCESS!! :-)')
+}
 ```
