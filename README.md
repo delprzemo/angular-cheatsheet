@@ -969,7 +969,56 @@ const routes: Routes = [
 
 This is usually used for big apps in order to improve performance
 
-**Why should we consider using *ngIf instead of ngClass/ngStyle for hiding element?**
+**Why should we consider using ngIf instead of ngClass/ngStyle for hiding element?**
 
-*ngIf won't generate element when condition result is fale, so html will be lighter. ngClass/ngStyle will just hide element but it will be existing in DOM
+ngIf won't generate element when condition result is fale, so html will be lighter. ngClass/ngStyle will just hide element but it will be still existing in DOM
 
+**What is Done() function in tests?**
+
+We need 'done' to avoid test finishing before date was received
+See [done](https://github.com/delprzemo/angular-cheatsheet#unit-tests "done") 
+
+**What "import", "providers" and "declarations" stand for in NgModule?**
+
+```ts
+declarations: [AppComponent], // components, pipes, directives
+imports: [BrowserModule, AppRoutingModule], // other modules
+providers: [], // services
+```
+See [Sample module](https://github.com/delprzemo/angular-cheatsheet#sample-module-with-comments "Sample module") 
+
+**Explain the difference between Constructor and ngOnInit**
+
+Constructor is a method assigned to a class, so it is called when class object was initialized.
+ngOnInit is part of Component life cycle and it is dependent on the current state of view initialization.
+Constructor is called before ngOnInit
+
+**What is a difference between ElementRef and TemplateRef?**
+
+ElementRef is reference to particular element while TemplateRef can refer to whole ng-template
+
+```html
+<ng-template #test>
+   Test
+</ng-template>
+```
+
+```ts
+export class SthComponent  { 
+	@ViewChild('msg')
+	private testTempRef : TemplateRef<any>
+}
+```
+
+**Point all data biding ways for element**
+
+| Bindint type  | Example |
+| ------------- | ------------- |
+| Property binding  | [src]="this.src"  |
+| Event binding  | (click)="this.doSth()"  |
+| Two way data bidning  | [(ngModel)]="this.form.userName"  |
+
+**How to handle ngModel property in custom component?**
+
+Implement ControlValueAccessor interface.
+See [ngModel](https://github.com/delprzemo/angular-cheatsheet#ngmodel-in-custom-component "ngModel")  
