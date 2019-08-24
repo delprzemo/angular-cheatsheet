@@ -948,3 +948,28 @@ Use canActivateChild
 **What is ng-content in Angular?**
 
 See [ng-content](https://github.com/delprzemo/angular-cheatsheet/blob/master/README.md#content-projection "ng-content") 
+
+**How to create application with cutom prefix?**
+
+```
+ng new app-name --prefix my-cutom-prefix
+```
+
+**What is module lazy loading?**
+
+Instead of loading all modules while app starts we can load particular module when needed.
+
+```ts
+const routes: Routes = [
+  {
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then(m => m.UserModule)
+  }
+```
+
+This is usually used for big apps in order to improve performance
+
+**Why should we consider using *ngIf instead of ngClass/ngStyle for hiding element?**
+
+*ngIf won't generate element when condition result is fale, so html will be lighter. ngClass/ngStyle will just hide element but it will be existing in DOM
+
