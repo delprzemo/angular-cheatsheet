@@ -9,8 +9,7 @@ Set of basic functionalities from Angular in one place
 <!--ts-->
    * [AngularCli](#AngularCLI)
    * [Components and Templates](#Components-and-Templates)
-         * [Sample component ts file](#Sample-component-ts-file)
-	 
+      * [Sample component ts file](#Sample-component-ts-file)
    * [Installation](#installation)
    * [Usage](#usage)
       * [STDIN](#stdin)
