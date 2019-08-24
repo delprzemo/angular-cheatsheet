@@ -1,7 +1,31 @@
 # Angular Cheatsheet
 Set of basic functionalities from Angular in one place
 
-# AngularCLI
+
+
+**Table of Contents**
+
+
+<!--ts-->
+   * [AngularCli](#AngularCLI)
+   * [Table of contents](#table-of-contents)
+   * [Installation](#installation)
+   * [Usage](#usage)
+      * [STDIN](#stdin)
+      * [Local files](#local-files)
+      * [Remote files](#remote-files)
+      * [Multiple files](#multiple-files)
+      * [Combo](#combo)
+      * [Auto insert and update TOC](#auto-insert-and-update-toc)
+      * [GitHub token](#github-token)
+   * [Tests](#tests)
+   * [Dependency](#dependency)
+<!--te-->
+
+
+AngularCLI
+=================
+
 Command line inferface for Angular - set of commands that will help us during development.
 
 **1. Setup**
@@ -879,11 +903,11 @@ for example
 
 **How to mimick environment for components/services in tests?**
 
-Use TestBed
+Use TestBed. See [Unit tests](https://github.com/delprzemo/angular-cheatsheet#unit-tests "Unit tests")  
 
 **What is Resolve interface?**
 
-Interface that classes can implement to be a data provider.
+Interface that classes can implement to be a data provider for component while routing.
 
 example:
 
@@ -930,7 +954,7 @@ this.formCtrlSub = this.firstNameControl.valueChanges
 
 **What is valueChanges in form control?**
 
-It is to catch value changes and implement some logic in observable result. See example above
+To catch value changes and implement some logic in observable result. See example above
 
 **How to execute canActivate if any of child routes will change?**
 
