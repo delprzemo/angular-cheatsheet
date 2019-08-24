@@ -1022,3 +1022,45 @@ export class SthComponent  {
 
 Implement ControlValueAccessor interface.
 See [ngModel](https://github.com/delprzemo/angular-cheatsheet#ngmodel-in-custom-component "ngModel")  
+
+**What is differenct between default and onPush change detector?**
+
+default change detector will check bidnings in whole application component tree after event
+OnPush change detector informs Angular that our component biding is depend on input parameters. Moreover it won't check bindings in whole application but only in subtree where our component belongs. 
+
+**Why is it better to use pure pipes instead of some functions in template view?**
+If we want to calculate for example user age and show it on template then we can do it with function:
+
+```html
+{{this.getUserAge(user.birthDate)}}
+```
+
+But it will be calculated every time when change detector is run, so it can affect on performance. 
+Instead we can use pipe for that:
+
+```html
+{{user.birthDate | calculateAge}}
+```
+
+Now age calculation won't be performed so many times. 
+
+**How to detect change for any @Input property?**
+
+Use ngOnChanges hook
+
+```ts
+JavaScript
+ngOnChanges(values) {
+  // logic here
+}
+```
+
+**How to detect change for specific @Input in component?**
+
+Use 'set' accessor
+
+```ts
+@Input() set name(value) {
+  // some logic here
+}
+```
