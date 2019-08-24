@@ -88,7 +88,8 @@ Command line inferface for Angular - set of commands that will help us during de
 | ng add @angular/material 	  | add angular material to project  |
 | ng g @angular/material:material-nav --name nav  | create material navigation component  |
 
-# Components & Templates
+Components & Templates
+=================
 Components are the most basic UI building block of an Angular app. An Angular app contains a tree of Angular components.
 
 ## Sample component ts file
