@@ -862,7 +862,7 @@ Service1 will be injected into another class
 
 **What is router-outlet**
 
-Use the <router-outlet> component when your main will appear in your application
+Acts as a placeholder that Angular dynamically fills based on the current router state. Generally in place of <router-outlet> your main app component will be generated
 	
 **How to declare global value?**
 
