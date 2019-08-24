@@ -3,12 +3,14 @@ Set of basic functionalities from Angular in one place
 
 
 
-**Table of Contents**
+# Table of Contents
 
 
 <!--ts-->
    * [AngularCli](#AngularCLI)
    * [Components and Templates](#Components-and-Templates)
+         * [Sample component ts file](#Sample-component-ts-file)
+	 
    * [Installation](#installation)
    * [Usage](#usage)
       * [STDIN](#stdin)
