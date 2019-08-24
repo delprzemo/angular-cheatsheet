@@ -8,7 +8,7 @@ Set of basic functionalities from Angular in one place
 
 <!--ts-->
    * [AngularCli](#AngularCLI)
-   * [Components & Templates](#Components & Templates)
+   * [Components and Templates](#Components-and-Templates)
    * [Installation](#installation)
    * [Usage](#usage)
       * [STDIN](#stdin)
@@ -88,8 +88,8 @@ Command line inferface for Angular - set of commands that will help us during de
 | ng add @angular/material 	  | add angular material to project  |
 | ng g @angular/material:material-nav --name nav  | create material navigation component  |
 
-Components & Templates
-=================
+# Components and Templates
+
 Components are the most basic UI building block of an Angular app. An Angular app contains a tree of Angular components.
 
 ## Sample component ts file
