@@ -10,17 +10,29 @@ Set of basic functionalities from Angular in one place
    * [AngularCli](#AngularCLI)
    * [Components and Templates](#Components-and-Templates)
       * [Sample component ts file](#Sample-component-ts-file)
-   * [Installation](#installation)
-   * [Usage](#usage)
-      * [STDIN](#stdin)
-      * [Local files](#local-files)
-      * [Remote files](#remote-files)
-      * [Multiple files](#multiple-files)
-      * [Combo](#combo)
-      * [Auto insert and update TOC](#auto-insert-and-update-toc)
-      * [GitHub token](#github-token)
-   * [Tests](#tests)
-   * [Dependency](#dependency)
+      * [Component life cycles](#Component-life-cycles)
+      * [Template syntax](#Template-syntax)
+      * [Input and Output](#Input-and-Output)
+      * [Content projection](#Content-projection)
+      * [ViewChild decorator](#ViewChild-decorator)
+   * [Routing](#Routing)
+      * [CanActivate and CanDeactivate](#CanActivate-and-CanDeactivate)
+   * [Modules](#Modules)
+   * [Services](#Services)
+      * [HttpClient](#HttpClient)
+      * [Dependency Injection](#Dependency-Injection)
+      * [Declare global values](#Declare-global-values)
+   * [Pipes](#Pipes)
+   * [Directives](#Directives)
+   * [Animations](#Animations)
+   * [Angular Forms](#Angular-Forms)
+      * [Template driven forms](#Template-driven-forms)
+      * [Reactive forms](#Reactive-forms)
+      * [Custom Validator for Reactive forms](#Custom-Validator-for-Reactive-forms)
+      * [Custom Validator Directive for Template driven forms](#Custom-Validator-Directive-for-Template-driven-forms)
+      * [ngModel in custom component](#ngModel-in-custom-component)
+   * [Tests](#Tests)
+   * [Directives](#Directives)
 <!--te-->
 
 
@@ -146,7 +158,7 @@ export class AppComponent {
 | <div [ngClass]="{green: isTrue(), bold: itTrue()}"/> | Angular ngClass attribute  |
 | <div [ngStyle]="{'color': isTrue() ? '#bbb' : '#ccc'}"/>	| Angular ngStyle attribute  |
 
-## Input/Output
+## Input and Output
 
 **Input()**
 To pass value into child component
@@ -220,7 +232,7 @@ Example:
 <ng-content select="body"></ng-content>
 ```
 
-## @ViewChild decorator
+## ViewChild decorator
 In order to have access to child component/directive/element
 
 ```ts
@@ -295,7 +307,7 @@ this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);
 let id = this.route.snapshot.paramMap.get('id');										
  ```
  
-## CanActivate/CanDeactivate
+## CanActivate and CanDeactivate
 Interface that a class can implement to be a guard deciding if a route can be activated. If all guards return true, navigation will continue. 
 
 ```ts
@@ -408,7 +420,7 @@ export class SomeService {}
 ```
 It accepts 'root' as a value or any module of your application
 
-## Declare global values/classes
+## Declare global values
 
 class:
 ```ts
