@@ -936,10 +936,15 @@ It is to catch value changes and implement some logic in observable result. See 
 
 Use canActivateChild
 
-**What are compilation types in Angular**
+**What are compilation types in Angular?**
 
 | Type  | Description |
 | ------------- | ------------- |
 | AoT  | Ahead of time - compile full application / module when application was opened. Used mainly on production  |
 | JiT  | Just in time - compile specific element when it has been opened. Used mainly while programming  |
 | Ivy  | Since Angular 8 - engine based on concept Incremental DOM  |
+
+
+**What is ng-content in Angular?**
+
+See [ng-content](https://github.com/delprzemo/angular-cheatsheet/blob/master/README.md#content-projection "ng-content") 
