@@ -8,7 +8,7 @@ Set of basic functionalities from Angular in one place
 
 <!--ts-->
    * [AngularCli](#AngularCLI)
-   * [Table of contents](#table-of-contents)
+   * [Components & Templates](#Components & Templates)
    * [Installation](#installation)
    * [Usage](#usage)
       * [STDIN](#stdin)
