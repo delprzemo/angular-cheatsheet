@@ -841,6 +841,7 @@ Refer to host element/component
 # Interview questions
 
 **When would you use the useFactory provider method?**
+
 With useFactory we can use a factory at runtime to decide which kind of service we want to return if it got requested by any other class in our application or you need to parameterize the construction of a service
 
 ```ts
@@ -860,12 +861,15 @@ export class Service2 {}
 Service1 will be injected into another class
 
 **What is router-outlet**
+
 Use the <router-outlet> component when your main will appear in your application
 	
 **How to declare global value?**
+
 Use InjectionToken
 
 **Which decorator lets you inject a service registered with an Injection Token?**
+
 @Inject
 
 for example
@@ -874,9 +878,11 @@ for example
 ```
 
 **How to mimick environment for components/services in tests?**
+
 Use TestBed
 
 **What is Resolve interface?**
+
 Interface that classes can implement to be a data provider.
 
 example:
@@ -911,3 +917,29 @@ class UserResolver implements Resolve<User> {
 ```
 
 We can use it to pre-load data for a component before the component is displayed
+
+**How to begin validation after the user will enter a value and pause?**
+
+Use debounceTime, for example
+
+```ts
+this.formCtrlSub = this.firstNameControl.valueChanges
+      .debounceTime(1000)
+      .subscribe(newValue => this.firstName = newValue);
+```
+
+**What is valueChanges in form control?**
+
+It is to catch value changes and implement some logic in observable result. See example above
+
+**How to execute canActivate if any of child routes will change?**
+
+Use canActivateChild
+
+**What are compilation types in Angular**
+
+| Type  | Description |
+| ------------- | ------------- |
+| AoT  | Ahead of time - compile full application / module when application was opened. Used mainly on production  |
+| JiT  | Just in time - compile specific element when it has been opened. Used mainly while programming  |
+| Ivy  | Since Angular 8 - engine based on concept Incremental DOM  |
