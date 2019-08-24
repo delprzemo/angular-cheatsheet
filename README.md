@@ -35,7 +35,7 @@ Set of basic functionalities from Angular in one place
       * [Unit tests](#Unit-tests)
    * [Others](#Others)
       * [Http interceptor](#Http-interceptor)
-      * [:host](#:host)
+      * [host](#host)
    * [Interview questions](#Interview-questions)
 <!--te-->
 
@@ -869,7 +869,7 @@ Module:
 { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
 ```
 
-## :host
+## host
 Refer to host element/component
 
 
