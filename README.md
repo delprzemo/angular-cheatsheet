@@ -32,7 +32,11 @@ Set of basic functionalities from Angular in one place
       * [Custom Validator Directive for Template driven forms](#Custom-Validator-Directive-for-Template-driven-forms)
       * [ngModel in custom component](#ngModel-in-custom-component)
    * [Tests](#Tests)
-   * [Directives](#Directives)
+      * [Unit tests](#Unit-tests)
+   * [Others](#Others)
+      * [Http interceptor](#Http-interceptor)
+      * [:host](#:host)
+   * [Interview questions](#Interview-questions)
 <!--te-->
 
 
