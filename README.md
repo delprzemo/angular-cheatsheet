@@ -124,7 +124,8 @@ export class AppComponent {
 	title = 'my-dogs-training';
 }
 ```
-** Component attributes**
+
+## Component attributes
 
 
 | Attribute  | Description |
