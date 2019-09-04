@@ -295,6 +295,17 @@ Then this should be added inside Angular.module imports
 RouterModule.forRoot(appRoutes)
 ```
 
+You can also turn on console tracking for your routing by adding enableTracing
+
+```ts
+imports: [
+   RouterModule.forRoot(
+     routes,
+     {enableTracing: true}
+    )
+],
+ ```
+
 **Usage**
 ```html
   <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a>	
