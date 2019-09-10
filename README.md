@@ -242,13 +242,13 @@ In order to have access to child component/directive/element
 
 ```ts
 @ViewChild(NumberComponent)
-    private numberComponent: NumberComponent;
-    increase() {
-       this.numberComponent.increaseByOne(); //method from child component
-    }
-    decrease() {
-       this.numberComponent.decreaseByOne();  //method from child component
-    }
+private numberComponent: NumberComponent;
+increase() {
+this.numberComponent.increaseByOne(); //method from child component
+}
+decrease() {
+this.numberComponent.decreaseByOne();  //method from child component
+}
 ```
 
 **Sample for element:**
