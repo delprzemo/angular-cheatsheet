@@ -1,7 +1,11 @@
 # Angular Cheatsheet
 Set of basic functionalities from Angular in one place. Thanks to http://foreach.pl for contribute
 
+**Check also other Cheatsheets:**
 
+[TypeScript](https://github.com/delprzemo/typescript-cheatsheet)
+
+[ReactJS](https://github.com/delprzemo/react-cheatsheet)
 
 # Table of Contents
 
